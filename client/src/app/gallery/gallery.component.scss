@@ -1,0 +1,131 @@
+.example-container {
+  position: relative;
+  padding: 5px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-full-width:nth-last-child(0) {
+  margin-bottom: 10px;
+}
+
+.button-row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-flat-button {
+  margin: 5px;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 1vh;
+}
+
+.label {
+  font-size: 1.3rem;
+  color: black;
+}
+
+.placeholders {
+  color: #626060;
+}
+
+.uploadButton {
+  display: inline-block;
+  padding: 12px 20px 30px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff !important;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.uploadButton:hover {
+  background-color: #555556;
+}
+
+.file-container {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #f5f5f5;
+  border: 2px dashed #aeaeae;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file-container:hover {
+  background-color: #efefef;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #6c6c6c;
+}
+
+.input-container {
+  text-decoration: underline;
+}
+
+.input-text {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1877F2;
+}
+
+.input-text,
+.file-container button {
+  cursor: pointer;
+}
+
+.clear-button {
+  padding: 10px 20px 10px 20px;
+  margin-top: 0.8rem;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #e24858;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.mat-mdc-card {
+  box-shadow : none !important;
+}

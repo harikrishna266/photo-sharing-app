@@ -1,0 +1,34 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div *ngIf="showAlert" class="alert"
+      [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}">
+      {{ alertMessage }}
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="username" id="username" name="username" placeholder="Enter your username" class="input-box">
+      <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+        <div *ngIf="username?.errors?.['required']">Username is required.</div>
+        <div *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters long.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" formControlName="password" id="password" name="password" placeholder="Enter your password" class="input-box">
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+        <div *ngIf="password?.errors?.['required']">Password is required.</div>
+        <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [style.background-color]="loginForm.invalid ? '#71797E' : ''"
+        [style.color]="loginForm.invalid ? 'white' : ''"
+        [style.cursor]="loginForm.invalid ? 'not-allowed' : 'pointer'">Login</button>
+
+    </div>
+    <p class="para">OR</p>
+    <div class="form-group">
+      <button type="submit" [routerLink]="['/users/register']">Register</button>
+    </div>
+
+  </form>
+</div>

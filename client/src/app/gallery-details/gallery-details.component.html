@@ -1,0 +1,78 @@
+<div class="example-container mat-elevation-z8">
+  <h2 class="heading example-card">Image Gallery</h2>
+  <div class="container">
+    <a [routerLink]="['/gallery']" class="linkTag">
+      <h3>Upload Again<mat-icon>add</mat-icon></h3>
+    </a>
+    <div class="search-container">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input class="search-box search search-input " type="text" [(ngModel)]="searchQuery" (input)="searchImages()"
+        placeholder="Search..." (click)="toggleSearchList()">
+      <div class="search-list-overlay" [ngClass]="{'active': isSearchListVisible}"
+        *ngIf="isSearchListVisible && isLoadingFilterResults && searchResults.length > 0">
+        <div class="search-list">
+          <ul *ngIf="isLoadingFilterResults && searchResults && searchResults.length > 0">
+            <li *ngFor="let result of searchResults">
+              <a href="javascript:void(0);" (click)="selectSearchResult(result)">
+                {{ result.imageTitle }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a [routerLink]="['/users/login']" class="LogoutLinkTag" (click)="logoutFunction()">
+      <h3>Logout<mat-icon class="matIcon">exit_to_app</mat-icon></h3>
+    </a>
+  </div>
+
+  <ng-container *ngIf="isLoadingFilterResults  && filteredGalleryAll && filteredGalleryAll.length > 0">
+    <div class="image-grid">
+      <div *ngFor="let image of filteredGalleryAll" class="image-item">
+        <mat-card class="example-card">
+          <mat-card-header class="custom-header">
+            <mat-card-title>{{ image.imageTitle }}</mat-card-title>
+            <button mat-icon-button (click)="deleteImage(image._id)" class="deleteButton">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-header>
+          <img mat-card-image [src]="image.imageUrl" alt="image.imageTitle" class="gallery-image">
+          <mat-card-content class="content">
+            <p>{{ image.imageDesc }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="isLoadingFilterResults && filteredGalleryAll.length === 0 ">
+    <p class="empty-data">No images found.</p>
+  </div>
+
+  <ng-container
+    *ngIf="!isLoadingResults  && !isLoadingFilterResults && galleryAll && galleryAll.length > 0; else noData">
+    <div class="image-grid">
+      <div *ngFor="let gallery of galleryAll" class="image-item">
+        <mat-card class="example-card">
+          <mat-card-header class="custom-header">
+            <mat-card-title>{{ gallery.imageTitle }}</mat-card-title>
+            <button mat-icon-button (click)="deleteImage(gallery._id)" class="deleteButton">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-header>
+          <div class="image-container">
+            <img mat-card-image [src]="gallery.imageUrl" alt="gallery.imageDesc" class="gallery-image">
+          </div>
+          <mat-card-content>
+            <p>{{ gallery.imageDesc }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noData>
+    <p class="empty-data" ngIf="galleryAll.length === 0">No images found.</p>
+  </ng-template>
+
+</div>

@@ -1,0 +1,45 @@
+<div class="example-container mat-elevation-z8">
+  <h2 class="heading">Add Gallery</h2>
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="galleryForm" (ngSubmit)="onFormSubmit()">
+      <div class="file-container" formControlName="imageFile" *ngIf="!file" (mousedown)="triggerFileInput($event)"
+        (dragenter)="handleDragEnter($event)" (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave($event)"
+        (drop)="handleDrop($event)">
+        <label class="file-label">
+          Select or drop files here
+          <input type="file" #fileInput (change)="getFile($event)" class="file-input" />
+        </label>
+      </div>
+      <div *ngIf="file" class="input-text">
+        File Name : {{ file.name }} <br />
+        <button (click)="file = undefined" class="clear-button">Clear File</button>
+      </div>
+      <mat-form-field class="example-full-width">
+        <mat-label style="color: black;">Image Name</mat-label>
+        <input matInput placeholder="Image Name" formControlName="imageTitle" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!galleryForm?.get('imageTitle')?.valid && galleryForm?.get('imageTitle')?.touched">Please enter
+            Image Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label style="color: black;">Image Description</mat-label>
+        <input matInput placeholder="Image Description" formControlName="imageDesc" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!galleryForm?.get('imageDesc')?.valid && galleryForm?.get('imageDesc')?.touched">Please enter
+            Image Description</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" class="uploadButton" mat-flat-button
+          [style.background-color]="isFormEmpty() ? '#71797E' : '#0f0f10'"
+          [style.cursor]="isFormEmpty() ? 'not-allowed' : 'pointer'">
+          <mat-icon>upgrade</mat-icon>Upload
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
